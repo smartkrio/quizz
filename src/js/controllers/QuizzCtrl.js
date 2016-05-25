@@ -2,6 +2,19 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
     $scope.started = false;
     $scope.finished = false;
     $scope.resultSelector  = 'all';
+    $scope.create = false;
+    $scope.questionText = '';
+    $scope.user = {
+        username: '',
+        password: ''
+    };
+
+    $scope.$watch('user.username', function (newValue) {
+        if (newValue) {
+            console.log(newValue)
+            $scope.message = '';
+        }
+    });
 
     var defaultQuizz = {
         options: {
@@ -25,6 +38,32 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
         $scope.started = true;
         $scope.currentQuestion = $scope.quizz.questions[0];
     };
+
+    $scope.createQuestion = function() {
+        $scope.create = true;
+        //$scope.currentQuestion = $scope.quizz.questions[0];
+    };
+    $scope.$watch('questionText', function (newValue) {
+        console.log(newValue)
+        if (newValue) {
+
+            $scope.message = '';
+        }
+    });
+    $scope.saveQuestion = function() {
+        $scope.create = true;
+        $scope.$watch('questionText', function (newValue) {
+            if (newValue) {
+                console.log(newValue)
+                $scope.message = '';
+            }
+        });
+        //$scope.currentQuestion = $scope.quizz.questions[0];
+        console.log($scope.questionText)
+        //console.log($scope.saveQuestionText)
+    };
+
+
 
     function questionIndex() {
         return $scope.quizz.questions.indexOf($scope.currentQuestion);

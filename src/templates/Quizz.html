@@ -4,6 +4,13 @@
     <button class="btn btn-primary btn-large quizz-start-button" ng-click="start()">Start</button>
 </div>
 
+<div class="quizz-intro jumbotron" ng-show="!started">
+    <h1>{{ quizz.title }}</h1>
+    <p btf-markdown="quizz.description"></p>
+    <button class="btn btn-primary btn-large quizz-start-button" ng-click="createQuestion()">Create question</button>
+</div>
+
+
 <div class="quizz-question" ng-show="started && !finished">
     <div class="row">
         <div class="col-md-2 col-sd-12 row text-center">
@@ -44,6 +51,20 @@
                     <a class="quizz-finish-button" href="">Finish &rarr;</a>
                 </li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<div class="quizz-question" ng-show="create">
+    <div class="row">
+        <div class="col-md-10">
+            <h4 class="well" btf-markdown="currentQuestion.text"></h4>
+
+            <div class="input-group quizz-intro jumbotron col-md-12">
+                <input ng-model="user.username" ng-value="saveQuestionText" type="text" class="form-control questionText" placeholder="write your question" aria-describedby="basic-addon1">
+                <button ng-click="saveQuestion()" type="button" class="btn btn-default">Save Question</button>
+            </div>
+
         </div>
     </div>
 </div>
