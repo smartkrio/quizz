@@ -11,10 +11,10 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
     $scope.newQuest = {
         title: '',
         singleSelect: '',
-        checkbox:{
-            value1:'',
-            value2:'',
-            value3:'',
+        checkbox: {
+            value1: '',
+            value2: '',
+            value3: ''
         }
     };
 
@@ -55,18 +55,24 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
             checkbox: {
                 value1: '',
                 value2: '',
-                value3: '',
+                value3: ''
+            },
+            radio: {
+                value1: '',
+                value2: '',
+                value3: ''
             }
         };
         $scope.counter++;
         $scope.title = '';
 
     };
+
     $scope.endCreatingQuestions = function(){
 
         $scope.create = false;
         $scope.showCreatedQuestions = true;
-    }
+    };
 
 
 
@@ -146,7 +152,7 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
         }
     };
 
-    $scope.allResultFilter = function(question) {
+    $scope.allResultFilter = function() {
         return true;
     };
 
