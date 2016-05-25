@@ -49,7 +49,7 @@
 </div>
 
 <div class="quizz-result" ng-show="finished">
-    <h1>Your results:</h1>
+    <h1>Final:</h1>
     <hr/>
 
     <div ng-repeat="question in quizz.questions" class="quizz-result-question">
@@ -72,14 +72,18 @@
                         <div class="col-xs-10 quizz-free-yours">{{ question.typedAnswer }}</div>
                     </div>
                 </div>
-                <div ng-show="question.type == 'radio'">
+                <div ng-show="question.type == 'checkbox'">
                     <div class="row">
                         <div class="col-xs-2">
                             <strong>Your answer:</strong>
                         </div>
-                        <ul class="unstyled" ng-show="question.answers.length > 1">
-                            <li ng-repeat="answer in question.answers"><span class="glyphicon glyphicon-ok"></span> {{ answer }}</li>
-                        </ul>
+                        <div class="class=col-xs-10 quizz-free-yours" ng-show="question.answers.length > 1">
+                            <div class='unstyled' ng-repeat="answer in question.answers">
+                                <div ng-show="answer.checked">
+                                    <span btf-markdown="answer.text"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
