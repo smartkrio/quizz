@@ -4,17 +4,19 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
     $scope.resultSelector  = 'all';
     $scope.create = false;
     $scope.questionText = '';
+    $scope.arrayQuestions = [];
+    $scope.counter = 1;
+    $scope.showCreatedQuestions = false;
+
     $scope.user = {
         username: '',
-        password: ''
-    };
-
-    $scope.$watch('user.username', function (newValue) {
-        if (newValue) {
-            console.log(newValue)
-            $scope.message = '';
+        singleSelect: '',
+        checkbox:{
+            value1:'',
+            value2:'',
+            value3:'',
         }
-    });
+    };
 
     var defaultQuizz = {
         options: {
@@ -43,25 +45,37 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
         $scope.create = true;
         //$scope.currentQuestion = $scope.quizz.questions[0];
     };
-    $scope.$watch('questionText', function (newValue) {
-        console.log(newValue)
-        if (newValue) {
-
-            $scope.message = '';
-        }
-    });
+    //$scope.$watch('questionText', function (newValue) {
+    //    console.log(newValue)
+    //    if (newValue) {
+    //
+    //        $scope.message = '';
+    //    }
+    //});
     $scope.saveQuestion = function() {
         $scope.create = true;
-        $scope.$watch('questionText', function (newValue) {
-            if (newValue) {
-                console.log(newValue)
-                $scope.message = '';
+        $scope.arrayQuestions.push($scope.user)
+        $scope.user = {
+            username: '',
+            singleSelect: '',
+            checkbox: {
+                value1: '',
+                value2: '',
+                value3: '',
             }
-        });
-        //$scope.currentQuestion = $scope.quizz.questions[0];
-        console.log($scope.questionText)
-        //console.log($scope.saveQuestionText)
+        };
+        $scope.counter++;
+        $scope.username = '';
+
     };
+    $scope.endCreatingQuestions = function(){
+        $scope.arrayQuestions.push($scope.user)
+        $scope.create = false;
+        $scope.showCreatedQuestions = true;
+    }
+
+
+
 
 
 
