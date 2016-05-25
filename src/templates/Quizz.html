@@ -4,6 +4,13 @@
     <button class="btn btn-primary btn-large quizz-start-button" ng-click="start()">Start</button>
 </div>
 
+<div class="quizz-intro jumbotron" ng-show="!started && !create">
+    <h1>{{ quizz.title }}</h1>
+    <p btf-markdown="quizz.description"></p>
+    <button class="btn btn-primary btn-large quizz-start-button" ng-click="createQuestion()">Create question</button>
+</div>
+
+
 <div class="quizz-question" ng-show="started && !finished">
     <div class="row">
         <div class="col-md-2 col-sd-12 row text-center">
@@ -47,6 +54,74 @@
         </div>
     </div>
 </div>
+
+<div class="quizz-question" ng-show="create && !started && !finished">
+    <div class="row">
+        <div class="col-md-10">
+            <h4 class="well" >create Question {{counter}}</h4>
+
+            <div class="input-group quizz-intro jumbotron col-md-12">
+                <input ng-model="newQuest.title" type="text" class="form-control questionText" placeholder="write your question" aria-describedby="basic-addon1">
+                <select name="singleSelect" id="singleSelect" ng-model="newQuest.singleSelect">
+                    <option value="">---Please select type of answer---</option> <!-- not selected / blank option -->
+                    <option value="text">'text'</option> <!-- interpolation -->
+                    <option value="checkbox">'checkbox'</option>
+                </select>
+
+                <div ng-show="newQuest.singleSelect === 'checkbox'">
+                    <input ng-model="newQuest.checkbox.value1" ng-value="saveQuestionText" type="text" class="form-control questionText" placeholder="write value of checkbox1" aria-describedby="basic-addon1">
+
+                    <input ng-model="newQuest.checkbox.value2" ng-value="saveQuestionText" type="text" class="form-control questionText" placeholder="write value of checkbox2" aria-describedby="basic-addon1">
+
+                    <input ng-model="newQuest.checkbox.value3" ng-value="saveQuestionText" type="text" class="form-control questionText" placeholder="write value of checkbox3" aria-describedby="basic-addon1">
+
+
+                </div>
+                <button ng-click="saveQuestion()" type="button" class="btn btn-default">Save Question and add new question</button>
+                <button ng-click="endCreatingQuestions()" type="button" class="btn btn-default">end creating question</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="quizz-question" ng-show="showCreatedQuestions">
+    <div class="row">
+        <div class="col-md-10">
+        <text>you created {{counter-1}} questions</text>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div ng-repeat="item in arrayQuestions">
+
+                <div ng-show="item.singleSelect ==='checkbox'" class="well" >
+                    <div class="well" btf-markdown="item.title"></div>
+                    <div class="form-group">
+                        <label>{{item.checkbox.value1}}</label>
+                        <input type="checkbox" class="form-control"  >
+                    </div>
+                    <div class="form-group">
+                        <label>{{item.checkbox.value2}}</label>
+                        <input type="checkbox" class="form-control"  >
+                    </div>
+                    <div class="form-group">
+                        <label>{{item.checkbox.value3}}</label>
+                        <input type="checkbox" class="form-control"  >
+                    </div>
+                </div>
+                <div ng-show="item.singleSelect !=='checkbox'" class="well" >
+                    <div class="form-group">
+                        <div class="well" btf-markdown="item.title"></div>
+                        <input type="text" class="form-control" placeholder="write your answer" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="quizz-result" ng-show="finished">
     <h1>Final:</h1>

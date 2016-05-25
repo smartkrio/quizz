@@ -2,6 +2,21 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
     $scope.started = false;
     $scope.finished = false;
     $scope.resultSelector  = 'all';
+    $scope.create = false;
+    $scope.questionText = '';
+    $scope.arrayQuestions = [];
+    $scope.counter = 1;
+    $scope.showCreatedQuestions = false;
+
+    $scope.newQuest = {
+        title: '',
+        singleSelect: '',
+        checkbox:{
+            value1:'',
+            value2:'',
+            value3:'',
+        }
+    };
 
     var defaultQuizz = {
         options: {
@@ -25,6 +40,38 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
         $scope.started = true;
         $scope.currentQuestion = $scope.quizz.questions[0];
     };
+
+    $scope.createQuestion = function() {
+        $scope.create = true;
+
+    };
+
+    $scope.saveQuestion = function() {
+        $scope.create = true;
+        $scope.arrayQuestions.push($scope.newQuest);
+        $scope.newQuest = {
+            title: '',
+            singleSelect: '',
+            checkbox: {
+                value1: '',
+                value2: '',
+                value3: '',
+            }
+        };
+        $scope.counter++;
+        $scope.title = '';
+
+    };
+    $scope.endCreatingQuestions = function(){
+
+        $scope.create = false;
+        $scope.showCreatedQuestions = true;
+    }
+
+
+
+
+
 
     function questionIndex() {
         return $scope.quizz.questions.indexOf($scope.currentQuestion);
