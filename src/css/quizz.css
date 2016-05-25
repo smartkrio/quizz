@@ -1,0 +1,43 @@
+.quizz-question label.checkbox, .quizz-question label.radio {
+    font-weight: normal;
+}
+.quizz-correct {
+    font-size: 40px;
+    color: #46a546;
+}
+.quizz-incorrect {
+    font-size: 40px;
+    color: #9d261d;
+}
+@media (min-width: 992px) {
+    .container {
+        margin-top: 60px;
+    }
+    .quizz-question .glyphicon-question-sign, .quizz-correct, .quizz-incorrect {
+        font-size: 60px;
+    }
+}
+th.quizz-tick, td.quizz-tick {
+    text-align: center;
+    width: 10%;
+}
+
+.quizz-result.ng-hide-remove {
+    display:block !important;
+}
+
+.quizz-result-question.ng-enter,
+.quizz-result.ng-hide-remove {
+    opacity: 0;
+}
+.quizz-result-question.ng-enter-active,
+.quizz-result.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+.quizz-result-question.ng-leave {
+    opacity: 1;
+}
+.quizz-result-question.ng-leave-active {
+    opacity: 0;
+}
+
