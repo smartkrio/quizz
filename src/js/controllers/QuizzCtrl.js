@@ -8,8 +8,8 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
     $scope.counter = 1;
     $scope.showCreatedQuestions = false;
 
-    $scope.user = {
-        username: '',
+    $scope.newQuest = {
+        title: '',
         singleSelect: '',
         checkbox:{
             value1:'',
@@ -43,20 +43,14 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
 
     $scope.createQuestion = function() {
         $scope.create = true;
-        //$scope.currentQuestion = $scope.quizz.questions[0];
+
     };
-    //$scope.$watch('questionText', function (newValue) {
-    //    console.log(newValue)
-    //    if (newValue) {
-    //
-    //        $scope.message = '';
-    //    }
-    //});
+
     $scope.saveQuestion = function() {
         $scope.create = true;
-        $scope.arrayQuestions.push($scope.user)
-        $scope.user = {
-            username: '',
+        $scope.arrayQuestions.push($scope.newQuest);
+        $scope.newQuest = {
+            title: '',
             singleSelect: '',
             checkbox: {
                 value1: '',
@@ -65,11 +59,11 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
             }
         };
         $scope.counter++;
-        $scope.username = '';
+        $scope.title = '';
 
     };
     $scope.endCreatingQuestions = function(){
-        $scope.arrayQuestions.push($scope.user)
+
         $scope.create = false;
         $scope.showCreatedQuestions = true;
     }
