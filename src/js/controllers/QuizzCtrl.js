@@ -86,10 +86,6 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
 
     $scope.isAnswerCorrect = isAnswerCorrect;
 
-    $scope.getScore = function() {
-        return $scope.quizz.questions.filter(isAnswerCorrect).length;
-    };
-
     $scope.isAnswerSelected = function(question, answer) {
         if (question.type == 'radio') {
             return question.selectedAnswer === answer;
