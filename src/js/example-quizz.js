@@ -1,6 +1,7 @@
 var quizz = {
-    title: 'Example Quizz',
-    description: 'AngularJS quizz',
+    show_title: 'Example show survey',
+    add_title: 'Example add questions',
+    description: 'AngularJS',
     questions: [
         {
             type: 'radio',

@@ -1,11 +1,11 @@
 <div class="quizz-intro jumbotron" ng-show="!started">
-    <h1>{{ quizz.title }}</h1>
+    <h1>{{ quizz.show_title }}</h1>
     <p btf-markdown="quizz.description"></p>
     <button class="btn btn-primary btn-large quizz-start-button" ng-click="start()">Start</button>
 </div>
 
 <div class="quizz-intro jumbotron" ng-show="!started && !create">
-    <h1>{{ quizz.title }}</h1>
+    <h1>{{ quizz.add_title }}</h1>
     <p btf-markdown="quizz.description"></p>
     <button class="btn btn-primary btn-large quizz-start-button" ng-click="createQuestion()">Create question</button>
 </div>
@@ -55,7 +55,7 @@
     </div>
 </div>
 
-<div class="quizz-question" ng-show="create && !started && !finished">
+<div class="quizz-question" ng-show="create && started && !finished">
     <div class="row">
         <div class="col-md-10">
             <h4 class="well" >create Question {{counter}}</h4>
@@ -77,8 +77,8 @@
 
 
                 </div>
-                <button ng-click="saveQuestion()" type="button" class="btn btn-default">Save Question and add new question</button>
-                <button ng-click="endCreatingQuestions()" type="button" class="btn btn-default">end creating question</button>
+                <button ng-click="saveQuestion()" type="button" class="btn btn-success btn-default">Save Question</button>
+                <button ng-click="endCreatingQuestions()" type="button" class="btn btn-danger btn-default">Finish</button>
             </div>
 
         </div>
